@@ -1,1 +1,519 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Loan Use Hub</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }\n        .container { padding: 20px; }\n        h1 { text-align: center; }\n        .category { margin: 15px 0; border: 1px solid #ccc; border-radius: 5px; }\n        .category-header { background-color: #f4f4f4; cursor: pointer; padding: 10px; border-radius: 5px; }\n        .category-content { display: none; padding: 10px; }\n        .highlight { font-weight: bold; color: orange; }\n    </style>\n    <script>\n        document.addEventListener('DOMContentLoaded', function() {\n            const headers = document.querySelectorAll('.category-header');\n            headers.forEach(header => { header.addEventListener('click', function() {\n                const content = this.nextElementSibling;\n                content.style.display = content.style.display === 'block' ? 'none' : 'block';\n            }); }); });\n    </script>\n    <script type="application/ld+json">\n        {\n            "@context": "https://schema.org",\n            "@type": "WebPage",\n            "name": "Loan Use Hub",\n            "description": "A hub for various types of loans categorized for easy access.",\n            "mainEntity": {\n                "@type": "ItemList",\n                "itemListElement": [\n                    { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": "Personal Loans" }},\n                    { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": "Auto Loans" }},\n                    { "@type": "ListItem", "position": 3, "item": { "@type": "Product", "name": "Debt & Emergency" }},\n                    { "@type": "ListItem", "position": 4, "item": { "@type": "Product", "name": "Medical & Health" }},\n                    { "@type": "ListItem", "position": 5, "item": { "@type": "Product", "name": "Home & Property" }},\n                    { "@type": "ListItem", "position": 6, "item": { "@type": "Product", "name": "Life Events" }}\n                ]\n            }\n        }\n    </script>\n</head>\n<body>\n    <div class="container">\n        <h1>Loan Use Hub</h1>\n        <div class="category">\n            <div class="category-header">Personal Loans</div>\n            <div class="category-content">\n                <ul>\n                    <li class="highlight">$3,000 Loan</li>\n                    <li>IVF Loans</li>\n                    <li>Appliance Financing</li>\n                    <li>Plastic Surgery Financing</li>\n                    <li>Joint Personal</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Auto Loans</div>\n            <div class="category-content">\n                <ul>\n                    <li>$10,000 Loan</li>\n                    <li>Auto Purchase Loans</li>\n                    <li>Auto Refinance Loans</li>\n                    <li>Cash Out Auto Refinance</li>\n                    <li>Auto Repair Financing</li>\n                    <li>Motorcycle Loan</li>\n                    <li>RV Loans</li>\n                    <li>Boat Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Debt & Emergency</div>\n            <div class="category-content">\n                <ul>\n                    <li>Debt Consolidation Loan</li>\n                    <li>Emergency Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Medical & Health</div>\n            <div class="category-content">\n                <ul>\n                    <li>Medical Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Home & Property</div>\n            <div class="category-content">\n                <ul>\n                    <li>Home Improvement Loans</li>\n                    <li>Pool Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Life Events</div>\n            <div class="category-content">\n                <ul>\n                    <li>Wedding Loans</li>\n                    <li>Moving Loans</li>\n                    <li>Vacation Loans</li>\n                    <li>Funeral Loans</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</body>\n</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loan Use Hub Prototype</title>
+  <meta name="description" content="Interactive prototype for replacing a dense loan-use carousel with curated modules and a centralized Loan Use Hub." />
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #1b2430;
+      --muted: #556070;
+      --brand: #4f46e5;
+      --brand-dark: #4338ca;
+      --line: #d9deea;
+      --success: #116149;
+      --warn: #a45309;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      background: rgba(245, 247, 251, 0.93);
+      backdrop-filter: blur(6px);
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar button {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .topbar button[aria-selected="true"] {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    .hero {
+      background: linear-gradient(135deg, #eef2ff, #f8faff);
+      border: 1px solid #dde4ff;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 18px 0;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 2.1vw, 2.2rem);
+    }
+
+    .hero p { margin: 6px 0; color: var(--muted); max-width: 75ch; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      background: #eef2ff;
+      color: #312e81;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.85rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 { margin: 0 0 6px; }
+    .card p { margin: 0 0 12px; color: var(--muted); font-size: 0.95rem; }
+
+    .btn {
+      border: none;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn:hover { background: var(--brand-dark); }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .cta-card {
+      border: 2px dashed #b9c4ff;
+      background: #f8f9ff;
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .kpis {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      margin-top: 16px;
+    }
+
+    .kpi {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .kpi strong { display: block; font-size: 1.2rem; }
+    .kpi span { color: var(--muted); font-size: 0.85rem; }
+
+    .section {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin: 12px 0;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      border-bottom: 1px solid #e8ecf5;
+      padding-bottom: 10px;
+    }
+
+    .use-item {
+      border: 1px solid #e7ebf4;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 10px 0;
+    }
+
+    .use-item h3 { margin: 0; font-size: 1.05rem; }
+    .use-meta {
+      color: var(--muted);
+      margin: 6px 0 10px;
+      font-size: 0.92rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      border-radius: 8px;
+      background: #eef6ff;
+      color: #0b4b83;
+      padding: 5px 8px;
+      font-size: 0.78rem;
+      border: 1px solid #d3e7ff;
+    }
+
+    details {
+      border: 1px solid #e8ecf5;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #fff;
+      margin: 8px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .fine-print {
+      border-left: 4px solid #f2ab27;
+      background: #fff9ec;
+      padding: 12px;
+      border-radius: 8px;
+      color: #613a04;
+      margin-top: 14px;
+      font-size: 0.92rem;
+    }
+
+    .log {
+      background: #0f172a;
+      color: #d1fae5;
+      border-radius: 12px;
+      padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.82rem;
+      max-height: 220px;
+      overflow: auto;
+    }
+
+    .inline-link {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .inline-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Prototype views">
+    <button type="button" class="tab" data-target="surface" aria-selected="true">High-Traffic Surface</button>
+    <button type="button" class="tab" data-target="hub" aria-selected="false">Loan Use Hub</button>
+    <button type="button" class="tab" data-target="metrics" aria-selected="false">Live Metrics Demo</button>
+  </nav>
+
+  <main class="page">
+    <section id="surface" class="panel active" aria-labelledby="surface-heading">
+      <div class="hero">
+        <h1 id="surface-heading">Prototype: Replace overloaded carousel with curated guidance</h1>
+        <p>
+          This simulates a product/landing page after replacing the 20-module carousel with 4 high-intent modules and one equal-weight “View all loan uses” CTA.
+        </p>
+        <div class="chips">
+          <span class="chip">FR-1: Curated 3–5 modules</span>
+          <span class="chip">FR-2: Equal CTA to full hub</span>
+          <span class="chip">FR-3: Remove hidden long list links</span>
+        </div>
+      </div>
+
+      <div class="grid" aria-label="Curated loan uses">
+        <article class="card">
+          <h3>Debt Consolidation</h3>
+          <p>Combine higher-interest balances into one predictable monthly payment.</p>
+          <button class="btn module-btn" data-use="Debt Consolidation">Explore this use</button>
+        </article>
+
+        <article class="card">
+          <h3>Emergency Expenses</h3>
+          <p>Cover urgent costs like car repair, home repair, or unexpected bills.</p>
+          <button class="btn module-btn" data-use="Emergency Expenses">Explore this use</button>
+        </article>
+
+        <article class="card">
+          <h3>Home Improvement</h3>
+          <p>Fund repairs and upgrades without using home equity.</p>
+          <button class="btn module-btn" data-use="Home Improvement">Explore this use</button>
+        </article>
+
+        <article class="card">
+          <h3>Medical Expenses</h3>
+          <p>Pay for planned procedures or large out-of-pocket health costs.</p>
+          <button class="btn module-btn" data-use="Medical Expenses">Explore this use</button>
+        </article>
+
+        <article class="card cta-card" aria-label="View all loan uses call to action">
+          <h3>Not sure which loan use fits?</h3>
+          <p>Compare all options in one AI-friendly, structured guide.</p>
+          <button class="btn secondary" id="view-all-btn">View all loan uses</button>
+        </article>
+      </div>
+
+      <div id="surface-status" class="status" role="status" aria-live="polite">
+        Interaction status: waiting for user input.
+      </div>
+    </section>
+
+    <section id="hub" class="panel" aria-labelledby="hub-heading">
+      <div class="hero">
+        <h1 id="hub-heading">What You Can Use a Personal Loan For</h1>
+        <p>
+          Canonical Loan Use Hub prototype with semantic headings, scannable copy, grouped use cases, FAQs, and clear internal links for SEO + answer-engine visibility.
+        </p>
+        <a class="inline-link" href="#faq">Jump to FAQ</a>
+      </div>
+
+      <section class="section" aria-labelledby="group-core">
+        <h2 id="group-core">Most common use cases</h2>
+
+        <article class="use-item" id="use-debt-consolidation">
+          <h3>Debt Consolidation Loan</h3>
+          <p class="use-meta">Use a personal loan to simplify payments and potentially reduce total interest.</p>
+          <div class="tags"><span class="tag">High intent</span><span class="tag">High volume</span></div>
+          <a class="inline-link" href="#">See debt consolidation details</a>
+        </article>
+
+        <article class="use-item" id="use-emergency">
+          <h3>Emergency Loan</h3>
+          <p class="use-meta">Handle urgent, unexpected expenses quickly while keeping repayment terms clear.</p>
+          <div class="tags"><span class="tag">Urgent need</span><span class="tag">Broad relevance</span></div>
+          <a class="inline-link" href="#">See emergency loan options</a>
+        </article>
+
+        <article class="use-item" id="use-home">
+          <h3>Home Improvement Loan</h3>
+          <p class="use-meta">Finance repairs, upgrades, or appliances without tapping property equity.</p>
+          <div class="tags"><span class="tag">Common project</span><span class="tag">Planned spend</span></div>
+          <a class="inline-link" href="#">Learn about home improvement loans</a>
+        </article>
+      </section>
+
+      <section class="section" aria-labelledby="group-life">
+        <h2 id="group-life">Life events and planned milestones</h2>
+        <article class="use-item"><h3>Wedding Loan</h3><p class="use-meta">Cover venue deposits, travel, and vendor costs with predictable payments.</p><a class="inline-link" href="#">Wedding loan guide</a></article>
+        <article class="use-item"><h3>Moving Loan</h3><p class="use-meta">Pay for movers, truck rental, deposits, and setup costs.</p><a class="inline-link" href="#">Moving loan guide</a></article>
+        <article class="use-item"><h3>Vacation Loan</h3><p class="use-meta">Spread travel costs over time when needed.</p><a class="inline-link" href="#">Vacation loan guide</a></article>
+        <article class="use-item"><h3>Funeral Loan</h3><p class="use-meta">Help manage urgent end-of-life expenses sensitively and clearly.</p><a class="inline-link" href="#">Funeral financing guide</a></article>
+      </section>
+
+      <section class="section" aria-labelledby="group-special">
+        <h2 id="group-special">Specialized and edge-case loan uses</h2>
+        <article class="use-item"><h3>Auto Repair Financing</h3><p class="use-meta">Address major repair bills to keep transportation available.</p><a class="inline-link" href="#">Auto repair financing details</a></article>
+        <article class="use-item"><h3>Medical Procedure Loan</h3><p class="use-meta">Finance planned or unexpected treatment costs.</p><a class="inline-link" href="#">Medical loan options</a></article>
+        <article class="use-item"><h3>Appliance Financing</h3><p class="use-meta">Replace critical household systems and appliances.</p><a class="inline-link" href="#">Appliance financing options</a></article>
+        <article class="use-item"><h3>IVF Loan</h3><p class="use-meta">Support fertility-treatment expenses through staged repayment.</p><a class="inline-link" href="#">IVF financing information</a></article>
+      </section>
+
+      <section class="section" id="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently asked questions</h2>
+        <details>
+          <summary>Will checking my options hurt my credit score?</summary>
+          <p>Many lenders offer pre-qualification with a soft credit inquiry. Hard inquiries typically happen later in the application process.</p>
+        </details>
+        <details>
+          <summary>How fast can I get the money?</summary>
+          <p>Timing varies by lender and verification. Some approvals can fund quickly, while complex applications may take longer.</p>
+        </details>
+        <details>
+          <summary>What documents do I need?</summary>
+          <p>Common requirements include identity, income verification, and banking details. Specific requirements vary by lender.</p>
+        </details>
+        <details>
+          <summary>Can I use a loan to pay bills?</summary>
+          <p>Often yes, but restrictions can apply. Review lender terms and legal disclosures before accepting a loan.</p>
+        </details>
+      </section>
+
+      <aside class="fine-print">
+        Prototype note: copy, disclosures, and eligibility language should be reviewed by Legal/Compliance and SEO before production.
+      </aside>
+    </section>
+
+    <section id="metrics" class="panel" aria-labelledby="metrics-heading">
+      <div class="hero">
+        <h1 id="metrics-heading">Success metrics simulation</h1>
+        <p>
+          Lightweight analytics demo for module clicks, “View all loan uses” clicks, hub entry, and FAQ engagement.
+        </p>
+      </div>
+
+      <div class="kpis" aria-live="polite">
+        <div class="kpi"><strong id="kpi-module">0</strong><span>Curated module clicks</span></div>
+        <div class="kpi"><strong id="kpi-cta">0</strong><span>View all CTA clicks</span></div>
+        <div class="kpi"><strong id="kpi-hub">0</strong><span>Hub visits</span></div>
+        <div class="kpi"><strong id="kpi-faq">0</strong><span>FAQ opens</span></div>
+      </div>
+
+      <div class="section">
+        <h2>Event log</h2>
+        <pre class="log" id="event-log">[ready] Analytics stream initialized.</pre>
+      </div>
+    </section>
+  </main>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Will checking my options hurt my credit score?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many lenders offer pre-qualification using a soft inquiry before any hard credit pull."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast can I get the money?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Funding times vary by lender, verification steps, and banking setup."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <script>
+    const state = {
+      moduleClicks: 0,
+      ctaClicks: 0,
+      hubVisits: 0,
+      faqOpens: 0
+    };
+
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+    const eventLog = document.getElementById('event-log');
+    const surfaceStatus = document.getElementById('surface-status');
+
+    const kpiModule = document.getElementById('kpi-module');
+    const kpiCta = document.getElementById('kpi-cta');
+    const kpiHub = document.getElementById('kpi-hub');
+    const kpiFaq = document.getElementById('kpi-faq');
+
+    function logEvent(name, payload = {}) {
+      const now = new Date().toISOString();
+      const line = `[${now}] ${name} ${JSON.stringify(payload)}`;
+      eventLog.textContent = `${line}\n${eventLog.textContent}`;
+      renderMetrics();
+    }
+
+    function renderMetrics() {
+      kpiModule.textContent = state.moduleClicks;
+      kpiCta.textContent = state.ctaClicks;
+      kpiHub.textContent = state.hubVisits;
+      kpiFaq.textContent = state.faqOpens;
+    }
+
+    function switchPanel(targetId) {
+      tabs.forEach((tab) => {
+        const selected = tab.dataset.target === targetId;
+        tab.setAttribute('aria-selected', String(selected));
+      });
+
+      panels.forEach((panel) => {
+        panel.classList.toggle('active', panel.id === targetId);
+      });
+
+      if (targetId === 'hub') {
+        state.hubVisits += 1;
+        logEvent('hub_view', { source: 'tab_navigation' });
+      }
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => switchPanel(tab.dataset.target));
+    });
+
+    document.querySelectorAll('.module-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const use = btn.dataset.use;
+        state.moduleClicks += 1;
+        surfaceStatus.textContent = `Interaction status: selected curated use → ${use}. Sending user to use-case detail page.`;
+        logEvent('curated_module_click', { use_case: use, location: 'high_traffic_surface' });
+      });
+    });
+
+    document.getElementById('view-all-btn').addEventListener('click', () => {
+      state.ctaClicks += 1;
+      surfaceStatus.textContent = 'Interaction status: user clicked “View all loan uses” and entered the Loan Use Hub.';
+      logEvent('view_all_loan_uses_click', { location: 'high_traffic_surface' });
+      switchPanel('hub');
+    });
+
+    document.querySelectorAll('#faq details').forEach((detail, index) => {
+      detail.addEventListener('toggle', () => {
+        if (detail.open) {
+          state.faqOpens += 1;
+          logEvent('faq_open', { faq_index: index + 1, question: detail.querySelector('summary').textContent.trim() });
+        }
+      });
+    });
+
+    renderMetrics();
+  </script>
+</body>
+</html>
