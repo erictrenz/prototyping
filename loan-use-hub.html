@@ -1,1 +1,326 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Loan Use Hub</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }\n        .container { padding: 20px; }\n        h1 { text-align: center; }\n        .category { margin: 15px 0; border: 1px solid #ccc; border-radius: 5px; }\n        .category-header { background-color: #f4f4f4; cursor: pointer; padding: 10px; border-radius: 5px; }\n        .category-content { display: none; padding: 10px; }\n        .highlight { font-weight: bold; color: orange; }\n    </style>\n    <script>\n        document.addEventListener('DOMContentLoaded', function() {\n            const headers = document.querySelectorAll('.category-header');\n            headers.forEach(header => { header.addEventListener('click', function() {\n                const content = this.nextElementSibling;\n                content.style.display = content.style.display === 'block' ? 'none' : 'block';\n            }); }); });\n    </script>\n    <script type="application/ld+json">\n        {\n            "@context": "https://schema.org",\n            "@type": "WebPage",\n            "name": "Loan Use Hub",\n            "description": "A hub for various types of loans categorized for easy access.",\n            "mainEntity": {\n                "@type": "ItemList",\n                "itemListElement": [\n                    { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": "Personal Loans" }},\n                    { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": "Auto Loans" }},\n                    { "@type": "ListItem", "position": 3, "item": { "@type": "Product", "name": "Debt & Emergency" }},\n                    { "@type": "ListItem", "position": 4, "item": { "@type": "Product", "name": "Medical & Health" }},\n                    { "@type": "ListItem", "position": 5, "item": { "@type": "Product", "name": "Home & Property" }},\n                    { "@type": "ListItem", "position": 6, "item": { "@type": "Product", "name": "Life Events" }}\n                ]\n            }\n        }\n    </script>\n</head>\n<body>\n    <div class="container">\n        <h1>Loan Use Hub</h1>\n        <div class="category">\n            <div class="category-header">Personal Loans</div>\n            <div class="category-content">\n                <ul>\n                    <li class="highlight">$3,000 Loan</li>\n                    <li>IVF Loans</li>\n                    <li>Appliance Financing</li>\n                    <li>Plastic Surgery Financing</li>\n                    <li>Joint Personal</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Auto Loans</div>\n            <div class="category-content">\n                <ul>\n                    <li>$10,000 Loan</li>\n                    <li>Auto Purchase Loans</li>\n                    <li>Auto Refinance Loans</li>\n                    <li>Cash Out Auto Refinance</li>\n                    <li>Auto Repair Financing</li>\n                    <li>Motorcycle Loan</li>\n                    <li>RV Loans</li>\n                    <li>Boat Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Debt & Emergency</div>\n            <div class="category-content">\n                <ul>\n                    <li>Debt Consolidation Loan</li>\n                    <li>Emergency Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Medical & Health</div>\n            <div class="category-content">\n                <ul>\n                    <li>Medical Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Home & Property</div>\n            <div class="category-content">\n                <ul>\n                    <li>Home Improvement Loans</li>\n                    <li>Pool Loans</li>\n                </ul>\n            </div>\n        </div>\n        <div class="category">\n            <div class="category-header">Life Events</div>\n            <div class="category-content">\n                <ul>\n                    <li>Wedding Loans</li>\n                    <li>Moving Loans</li>\n                    <li>Vacation Loans</li>\n                    <li>Funeral Loans</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debt Consolidation Loans | OneMain Financial</title>
+  <style>
+    :root {
+      --omf-blue-900: #0e2a66;
+      --omf-blue-700: #1547b0;
+      --omf-blue-500: #1f66d1;
+      --omf-blue-100: #eaf2ff;
+      --omf-orange-500: #ff8200;
+      --omf-slate-900: #10203d;
+      --omf-slate-700: #334566;
+      --omf-slate-100: #f5f8ff;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(15, 42, 102, 0.12);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+      color: var(--omf-slate-900);
+      background: linear-gradient(180deg, var(--white) 0%, #f8fbff 100%);
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 3.5rem 0 2rem;
+      background: radial-gradient(circle at 10% 10%, #2a75e01a, transparent 40%),
+                  radial-gradient(circle at 80% 0%, #ff82001f, transparent 34%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--omf-blue-100);
+      color: var(--omf-blue-900);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .hero-grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0.6rem 0;
+      font-size: clamp(1.85rem, 3.6vw, 3rem);
+      line-height: 1.12;
+      color: var(--omf-blue-900);
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--omf-slate-700);
+      max-width: 58ch;
+      font-size: 1.06rem;
+    }
+
+    .cta-row {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      font-weight: 700;
+      padding: 0.82rem 1.25rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--omf-orange-500);
+      color: #1b1b1b;
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      border: 1px solid #c9d8f6;
+      color: var(--omf-blue-900);
+    }
+
+    .hero-visual {
+      background: var(--white);
+      border: 1px solid #dce7ff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+    }
+
+    .graphic-title {
+      margin: 0 0 0.7rem;
+      font-weight: 700;
+      color: var(--omf-blue-900);
+      font-size: 0.95rem;
+    }
+
+    .bars {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 126px 1fr auto;
+      gap: 0.6rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .track {
+      height: 0.9rem;
+      border-radius: 999px;
+      background: #ecf2ff;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    .fill-many { width: 88%; background: linear-gradient(90deg, #588fed, #9fbff6); }
+    .fill-one { width: 52%; background: linear-gradient(90deg, #ffb45e, #ff8200); }
+
+    .section {
+      padding: 1.3rem 0 3rem;
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      color: var(--omf-blue-900);
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid #dce7ff;
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--omf-blue-100);
+      margin-bottom: 0.7rem;
+      color: var(--omf-blue-700);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      margin: 0.2rem 0;
+      font-size: 1.05rem;
+      color: var(--omf-blue-900);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--omf-slate-700);
+      font-size: 0.95rem;
+    }
+
+    .steps {
+      margin-top: 2rem;
+      background: var(--white);
+      border: 1px solid #dce7ff;
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .step {
+      background: var(--omf-slate-100);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem;
+    }
+
+    .step .num {
+      font-weight: 800;
+      color: var(--omf-orange-500);
+      margin-bottom: 0.2rem;
+    }
+
+    .disclaimer {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: #51658c;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .benefit-grid,
+      .step-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">OneMain Financial</span>
+        <div class="hero-grid">
+          <div>
+            <h1>Debt consolidation loans made simple and easier to track</h1>
+            <p class="subtitle">
+              Roll multiple credit card balances or high-interest debts into one loan with one fixed monthly payment.
+              Our goal is to help you feel more in control of your money.
+            </p>
+            <div class="cta-row">
+              <a href="#" class="btn btn-primary">Check your options</a>
+              <a href="#benefits" class="btn btn-secondary">See benefits</a>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-label="Graphic comparing multiple payments vs one payment">
+            <p class="graphic-title">Monthly payments to manage</p>
+            <div class="bars">
+              <div class="bar-row">
+                <span>Before</span>
+                <div class="track"><div class="fill fill-many"></div></div>
+                <strong>4+ bills</strong>
+              </div>
+              <div class="bar-row">
+                <span>After</span>
+                <div class="track"><div class="fill fill-one"></div></div>
+                <strong>1 bill</strong>
+              </div>
+            </div>
+            <p class="disclaimer">Example for illustration only. Loan terms vary by applicant and state.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="container">
+        <h2>Why people choose debt consolidation</h2>
+        <div class="benefit-grid">
+          <article class="card">
+            <div class="icon">$</div>
+            <h3>One predictable payment</h3>
+            <p>Combine several balances into one fixed payment so your month is easier to plan.</p>
+          </article>
+          <article class="card">
+            <div class="icon">%</div>
+            <h3>Potentially lower total interest</h3>
+            <p>Replacing multiple high-rate balances may reduce the amount of interest you pay over time.</p>
+          </article>
+          <article class="card">
+            <div class="icon">✓</div>
+            <h3>Clear payoff timeline</h3>
+            <p>Fixed terms can give you a target end date and a clearer path toward becoming debt-free.</p>
+          </article>
+        </div>
+
+        <div class="steps">
+          <h2 style="font-size:1.35rem; margin-top:0;">How it works</h2>
+          <div class="step-row">
+            <div class="step">
+              <div class="num">1. Apply online or in branch</div>
+              <div>Share your basic information and the debts you want to combine.</div>
+            </div>
+            <div class="step">
+              <div class="num">2. Review personalized offers</div>
+              <div>Choose the option that fits your budget and repayment goals.</div>
+            </div>
+            <div class="step">
+              <div class="num">3. Start with one payment</div>
+              <div>Pay down debt with a single monthly loan payment.</div>
+            </div>
+          </div>
+          <p class="disclaimer">
+            Debt consolidation may not be available in all states. Approval and terms are based on credit profile,
+            income, and other factors.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
